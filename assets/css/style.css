@@ -1,3 +1,32 @@
 .jumbotron {
     text-align: center;
 }
+
+.train-input {
+    position: relative;
+    border: 2px navy ridge;
+    padding: 10px;
+    height: 100%;
+}
+
+.train-display {
+    border: 2px navy ridge;
+    position: relative;
+    left: 40px;
+}
+
+.t_header, .input_header {
+   color: navy;
+}
+
+.t_header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.input_header {
+    border-bottom: navy 2px solid;
+}
+#add-train {
+    margin-top: 10px;
+}
