@@ -1,22 +1,44 @@
 .jumbotron {
     text-align: center;
+    background-image: url('../images/train.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: -200px;
+    -webkit-text-stroke: 1px white;
+    color: navy;
+    background-color: white;
 }
 
 .train-input {
     position: relative;
-    border: 2px navy ridge;
-    padding: 10px;
+    border: 3px navy ridge;
+    padding-left: 0px;
+    padding-right: 0px;
     height: 100%;
+    border-radius: 2%;
 }
 
 .train-display {
-    border: 2px navy ridge;
+    border: 3px navy ridge;
     position: relative;
     left: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 2%;
 }
 
 .t_header, .input_header {
-   color: navy;
+   color: aliceblue;
+   background-color:navy;
+   padding-left: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+#error {
+    color: red;
+    padding-left: 20px;
+    padding-top: 10px;
 }
 
 .t_header {
@@ -25,8 +47,34 @@
 }
 
 .input_header {
-    border-bottom: navy 2px solid;
+    border-bottom: navy 3px solid;
 }
 #add-train {
     margin-top: 10px;
+}
+form {
+    padding-left: 25px;
+}
+
+@media screen and (max-width: 1000px) {
+    .train-input {
+        left: -25px;
+    }
+    form {
+        padding-left: 10px;
+    }
+    #name-input, #destination-input, #first-train, #frequency-input {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .train-display {
+        position: relative;
+        left: -24px;
+        top: 20px;
+    }
+    .container {
+        padding-bottom: 30px;
+    }
 }

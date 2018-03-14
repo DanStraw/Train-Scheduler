@@ -11,8 +11,7 @@
     <title>Train Scheduler</title>
 </head>
 <body>
-    <div class="jumbotron"><h1>I'm just a simple Choo-Choo Train</h1></div>
-
+    <div class="jumbotron"><h1>I'm just a simple Choo-Choo Train</h1><h4>Scheduler</h4></div>
     <div class="container">
         <div class="row justify-content-between">
             <div class="train-input col-md-3">
@@ -20,22 +19,21 @@
                     <h5>Add Train</h5>
                 </div>
                 <form>
-                    <label for="name-input">Train Name: </label>
+                    <label for="name-input">Train Name: </label><br>
                     <input type="text" id="name-input" placeholder="ex. Thomas">
                     <br>
-                    <label for="destination-input">Destination: </label>
+                    <label for="destination-input">Destination: </label><br>
                     <input type="text" id="destination-input" placeholder="ex. Sodor">
                     <br>
-                    <label for="first-train">First Train Time: </label>
+                    <label for="first-train">First Train Time: </label><br>
                     <input type="text" id="first-train" placeholder="HH:mm - Military Time">
                     <br>
-                    <label for="frequency-input">Frequency: </label>
+                    <label for="frequency-input">Frequency: </label><br>
                     <input type="text" id="frequency-input" placeholder="Minutes">
                     <br>
-                    
                     <input id="add-train" type="submit" value="Add Train">
-                </form>
-                
+                </form> 
+                <div><p id="error"></p></div>
             </div>
             <div class="train-display col-md-9">
                 <div class="t_header">
@@ -51,20 +49,13 @@
                             <th>Minutes Away</th>
                         </tr>
                     </thead>
-                    <tbody class="table">
-                        <tr><td id="name-display">Charlie</td>
-                            <td id="destination-display">SD</td>
-                            <td id="frequency-display">20</td>
-                            <td id="arrival-display">1:05</td>
-                            <td id="minutes-away-display">45</td></tr>
-                    </tbody>
-                </table>
-                
+                    <tbody class="table"></tbody>
+                </table> 
             </div>
         </div>
     </div>
-
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>
