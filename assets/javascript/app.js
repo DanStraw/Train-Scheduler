@@ -46,7 +46,8 @@ $("#add-train").on("click", function(event) {
     if ((name == "") || (destination == "") || (firstTrain == "") || (frequency == "")) {
         $("#error").text("all fields must be completed");
         return false;
-    } else if ((firstTrain.length !== 5) || (firstTrainHour < 0) ||(firstTrainHour >= 24) || (firstTrainMinute < 0) || (firstTrainMinute >= 60) || (firstTrain[2] !== ":")){
+    } else if ((firstTrain.length !== 5) || (firstTrainHour < 0) ||(firstTrainHour >= 24) || (firstTrainMinute < 0) || 
+    (firstTrainMinute >= 60) || (firstTrain[2] !== ":") || (isNaN(firstTrainArray[0])) || (isNaN(firstTrainArray[1]))){
         $("#error").text("Please enter first train time in military time (including the colon)");
         return false;
     } else if (isNaN(frequency)) {
@@ -70,5 +71,3 @@ function resetForm() {
     $("#first-train").val(this.placeholder)
     $("#frequency-input").val(this.placeholder)
 }
-
-

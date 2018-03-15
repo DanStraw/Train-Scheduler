@@ -51,9 +51,14 @@
 }
 #add-train {
     margin-top: 10px;
+    padding-bottom: 10px;
 }
 form {
     padding-left: 25px;
+}
+
+th, label {
+    font-weight: bold;
 }
 
 @media screen and (max-width: 1000px) {
@@ -71,10 +76,15 @@ form {
 @media screen and (max-width: 780px) {
     .train-display {
         position: relative;
-        left: -24px;
+        /* left: -24px; */
         top: 20px;
+        height: auto;
     }
     .container {
         padding-bottom: 30px;
+    }
+
+    .train-input {
+        position: relative;
     }
 }
