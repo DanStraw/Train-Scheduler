@@ -21,7 +21,6 @@
 .train-display {
     border: 3px navy ridge;
     position: relative;
-    left: 40px;
     padding-left: 0px;
     padding-right: 0px;
     border-radius: 2%;
@@ -62,9 +61,6 @@ th, label {
 }
 
 @media screen and (max-width: 1000px) {
-    .train-input {
-        left: -25px;
-    }
     form {
         padding-left: 10px;
     }
@@ -74,11 +70,15 @@ th, label {
 }
 
 @media screen and (max-width: 780px) {
+    .train-display, .train-input {
+        width: 90%;
+    }
     .train-display {
         position: relative;
-        /* left: -24px; */
         top: 20px;
         height: auto;
+        left: 5%;
+        font-size: 70%;
     }
     .container {
         padding-bottom: 30px;
@@ -86,5 +86,17 @@ th, label {
 
     .train-input {
         position: relative;
+        left: 5%;
+    }
+
+    
+}
+    form {
+        width: 80%;
+    }
+
+@media screen and (max-wdith: 460px) {
+    .train-display {
+        font: 12px;
     }
 }
