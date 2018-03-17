@@ -13,10 +13,10 @@ var frequency = 0;
 
 database.ref().on("child_added", function(snapshot) {
     var row = $("<tr>");
-    var name = snapshot.val().name;
-    var destination = snapshot.val().destination;
-    var frequency = snapshot.val().frequency;
-    var firstTrain = snapshot.val().firstTrain;
+    var name = snapshot.val().train.name;
+    var destination = snapshot.val().train.destination;
+    var frequency = snapshot.val().train.frequency;
+    var firstTrain = snapshot.val().train.firstTrain;
     var firstTrainConverted = moment(firstTrain, "hh:mm").subtract(1, "years");
     var currentTime = moment();
     var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
@@ -32,34 +32,33 @@ $("#add-train").on("click", function(event) {
     audioElement.setAttribute('src', 'assets/audio/train_whistle.mp3');
     event.preventDefault();
     //user inputs data into the 4 fields.
-    var name = $("#name-input").val().trim();
-    var destination = $("#destination-input").val().trim();
-    var firstTrain = ($("#first-train").val().trim());
-    var firstTrainArray = firstTrain.split(":");
+    var train = {
+        name: $("#name-input").val().trim(),
+        destination: $("#destination-input").val().trim(),
+        firstTrain: $("#first-train").val().trim(),
+        frequency: $("#frequency-input").val().trim(),
+    }
+    var firstTrainArray = train.firstTrain.split(":");
     var firstTrainHour = firstTrainArray[0];
     var firstTrainMinute = firstTrainArray[1];
-    console.log(firstTrain[2]);
-    frequency = $("#frequency-input").val().trim();
-    console.log(isNaN(frequency));
+    
+    
     
     //all fields must be filled in for data to be accepted
-    if ((name == "") || (destination == "") || (firstTrain == "") || (frequency == "")) {
+    if ((train.name == "") || (train.destination == "") || (train.firstTrain == "") || (train.frequency == "")) {
         $("#error").text("all fields must be completed");
         return false;
-    } else if ((firstTrain.length !== 5) || (firstTrainHour < 0) ||(firstTrainHour >= 24) || (firstTrainMinute < 0) || 
-    (firstTrainMinute >= 60) || (firstTrain[2] !== ":") || (isNaN(firstTrainArray[0])) || (isNaN(firstTrainArray[1]))){
+    } else if ((train.firstTrain.length !== 5) || (firstTrainHour < 0) ||(firstTrainHour >= 24) || (firstTrainMinute < 0) || 
+    (firstTrainMinute >= 60) || (train.firstTrain[2] !== ":") || (isNaN(firstTrainArray[0])) || (isNaN(firstTrainArray[1]))){
         $("#error").text("Please enter first train time in military time (including the colon)");
         return false;
-    } else if (isNaN(frequency)) {
+    } else if (isNaN(train.frequency)) {
         $("#error").text("Frequency must be a number");
         return false;
     } else {
         audioElement.play();
         database.ref().push( {
-            name: name,
-            destination: destination,
-            firstTrain: firstTrain,
-            frequency: frequency,
+            train: train,
         });
         $("#error").remove();
         resetForm();
