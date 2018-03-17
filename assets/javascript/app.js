@@ -19,12 +19,21 @@ database.ref().on("child_added", function(snapshot) {
     var firstTrain = snapshot.val().train.firstTrain;
     var firstTrainConverted = moment(firstTrain, "hh:mm").subtract(1, "years");
     var currentTime = moment();
+    var day = moment().format('MMM Do YYYY');
+    console.log(day);
     var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
     var tRemainder = diffTime % frequency;
     var minutesAway = frequency - tRemainder;
     var nextArrival = moment().add(minutesAway, "minutes");
-    row.append("<td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + moment(nextArrival).format("hh:mm a") + "</td><td>" + minutesAway + "</td>");
-    $("tbody").append(row);
+    var arrivalDay = nextArrival.format('MMM Do YYYY');
+    console.log(arrivalDay);
+    if (day === arrivalDay) {
+        row.append("<td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + moment(nextArrival).format("hh:mm a") + "</td><td>" + minutesAway + "</td>");
+        $("tbody").append(row);
+    } else {
+        row.append("<td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + moment(nextArrival).format("hh:mm a") + " " + arrivalDay + "</td><td>" + minutesAway + "</td>");
+        $("tbody").append(row);
+    }
 });
 
 $("#add-train").on("click", function(event) {
@@ -41,8 +50,6 @@ $("#add-train").on("click", function(event) {
     var firstTrainArray = train.firstTrain.split(":");
     var firstTrainHour = firstTrainArray[0];
     var firstTrainMinute = firstTrainArray[1];
-    
-    
     
     //all fields must be filled in for data to be accepted
     if ((train.name == "") || (train.destination == "") || (train.firstTrain == "") || (train.frequency == "")) {
